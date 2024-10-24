@@ -1,0 +1,47 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.simple.simple-util</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Simple-Util</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="tangpengzy@163.com" url="https://github.com/tagnpeng">simple</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    mybatis log convert to sql<br>
+    <em><a href="https://github.com/simple-jay/mybatis-log">Github</a></em><br>
+    <em>More functions may be added in the future. Maybe... maybe...</em><br>
+    <em>feature introduction:</em><br>
+    <ol>
+    <li>Convert mybatis logs into runnable sql and copy it to the clipboard</li>
+    </ol>
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <group id="Simple.Tool" text="Simple Tool" popup="true">
+            <add-to-group group-id="ConsoleView.PopupMenu" anchor="first"/>
+        </group>
+
+        <!-- 创建Mybatis log -->
+        <action class="com.simple.simpleutil.action.MybatisLogConvertorAction" id="Simple.MybatisLog"
+                description="选中mybatis日志转换成sql"
+                text="转换并复制到剪贴板">
+            <add-to-group group-id="Simple.Tool"/>
+        </action>
+    </actions>
+</idea-plugin>
