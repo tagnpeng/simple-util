@@ -14,34 +14,58 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    mybatis log convert to sql<br>
+    some small tools<br>
     <em><a href="https://github.com/simple-jay/mybatis-log">Github</a></em><br>
     <em>More functions may be added in the future. Maybe... maybe...</em><br>
+     <em>These functions are not the most complete, they are just usable, but they are enough for daily use.</em><br>
     <em>feature introduction:</em><br>
     <ol>
     <li>Convert mybatis logs into runnable sql and copy it to the clipboard</li>
+    <li>Convert Class info mybatis result map xml to the clipboard</li>
+    </ol>
+    <hr>
+    一些小工具<br>
+    <em><a href="https://github.com/simple-jay/mybatis-log">Github</a></em><br>
+    <em>未来可能会添加更多功能。或许……或许……</em><br>
+    <em>这些功能都是不是最完善了,仅仅能用,但是日常使用已经足够了</em><br>
+    <em>功能介绍:</em><br>
+    <ol>
+    <li>将mybatis日志转换为可运行的sql并复制到剪贴板</li>
+    <li>将实体转换成mybatis result xml内容并复制到剪贴板</li>
     </ol>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
     </extensions>
 
+
     <actions>
-        <group id="Simple.Tool" text="Simple Tool" popup="true">
+        <group id="Simple.Tool.MybatisLog" text="Simple Tool" popup="true">
             <add-to-group group-id="ConsoleView.PopupMenu" anchor="first"/>
+        </group>
+        <group id="Simple.Tool.MybatisResult" text="Simple Tool" popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </group>
 
         <!-- 创建Mybatis log -->
         <action class="com.simple.simpleutil.action.MybatisLogConvertorAction" id="Simple.MybatisLog"
                 description="选中mybatis日志转换成sql"
-                text="转换并复制到剪贴板">
-            <add-to-group group-id="Simple.Tool"/>
+                text="转换mybatis日志">
+            <add-to-group group-id="Simple.Tool.MybatisLog"/>
+        </action>
+
+        <!-- 创建Mybatis result -->
+        <action class="com.simple.simpleutil.action.MybatisResultConvertorAction" id="Simple.MybatisResult.Copy"
+                description="将类名转换成mybatis result并复制到剪贴板"
+                text="将实体转换成mybatis result">
+            <add-to-group group-id="Simple.Tool.MybatisResult"/>
         </action>
     </actions>
 </idea-plugin>
